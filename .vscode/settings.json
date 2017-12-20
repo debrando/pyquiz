@@ -1,0 +1,8 @@
+{
+    "python.unitTest.nosetestArgs": [
+        "test"
+    ],
+    "python.unitTest.nosetestsEnabled": true,
+    "python.venvPath": "/home/dbra/.local/share/virtualenvs",
+    "python.pythonPath": "/home/dbra/.virtualenvs/pyquiz-OvvsiqdL/bin/python3.6"
+}
