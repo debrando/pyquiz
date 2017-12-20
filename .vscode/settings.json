@@ -4,5 +4,5 @@
     ],
     "python.unitTest.nosetestsEnabled": true,
     "python.venvPath": "/home/dbra/.local/share/virtualenvs",
-    "python.pythonPath": "/home/dbra/.virtualenvs/pyquiz-OvvsiqdL/bin/python3.6"
+    "python.pythonPath": "/home/dbra/.local/share/virtualenvs/pyquiz-OvvsiqdL"
 }

@@ -12,7 +12,8 @@ class Printer(object):
     def to_dict(self, customseed=None):
         """dictionary of the printable quizzes"""
         seed = customseed if customseed is not None else self.seed
-        diz = dict(title=self.quizzes.title, description=self.quizzes.description, quizzes=[])
+        diz = dict(title=self.quizzes.title, description=self.quizzes.description, 
+                   seed=seed, quizzes=[])
         for num, quiz in enumerate(self.quizzes.list_quizzes(seed), start=1):
             quiz['id'] = 'Q{0:03d}'.format(num)
             diz['quizzes'].append(quiz)
