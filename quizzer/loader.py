@@ -4,16 +4,23 @@ import copy
 import yaml
 import hashlib
 
-def repeatable_random(seed: int):
+def repeatable_random(seed: int, unique=True):
     """Repeatable random sequence
 
     from: https://stackoverflow.com/a/18992474/2004580
     """
-    mdseed = bytes(range(seed, seed+10))
+    produced = set()
+    mdseed = bytes(range(seed, seed+64))
     while True:
         mdseed = hashlib.md5(mdseed).digest()
-        for astep in mdseed:
+        consumeme = mdseed
+        while len(consumeme) >= 4:
+            astep = int.from_bytes(consumeme[:4], byteorder='big')
+            if unique and astep in produced:
+                continue
             yield astep
+            produced.add(astep)
+            consumeme = consumeme[4:]
 
 def repeatable_random_list(seed: int, size: int):
     """Returns a list of repeatable random numbers"""

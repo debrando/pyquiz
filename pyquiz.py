@@ -19,17 +19,18 @@ def render_text(gen: Generator):
     """YAML renderer"""
     def totext(doc):
         """Convert a single document into text"""
-        txt = '# {}\n[code: {}]\n{}\n\n'.format(doc['title'], doc['seed'], doc['description'])
+        txt = '# {0}\n### Studente S{1:02d}:_________________________\n{2}\n\n'.format(
+            doc['title'], doc['seed'], doc['description'])
         for quiz in doc['quizzes']:
             txt += '## {} ({}):\n{}\n\n'.format(quiz['id'], 'multi' if quiz['multi'] else 'single', quiz['text'])
-            for opt in quiz['options']:
-                txt += ' - [ ] {}\n'.format(opt)
+            for num, opt in enumerate(quiz['options'], 1):
+                txt += ' - R{} [ ] {}\n'.format(num, opt)
             txt += '\n'
         return txt
 
     return '\n---\n'.join(totext(adoc) for adoc in gen)
 
-def renderer(quizfile: str, seed: int = 0, number: int = 1, outformat: str = 'YAML'):
+def renderer(quizfile: str, seed: int = 0, number: int = 1, outformat: str = 'TEXT'):
     """Renders the quizfile in the number and format given.
     
     Supported formats: TEXT, YAML
